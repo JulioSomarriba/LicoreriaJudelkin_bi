@@ -1,10 +1,16 @@
 CREATE DATABASE judelkin;
 use judelkin;
-
-select * from categoria;
+drop database judelkin;
 
 ALTER TABLE producto
-DROP COLUMN imagen;
+ADD imagen longtext; 
+	
+ALTER TABLE venta
+MODIFY COLUMN tipo_de_venta varchar(255);
+
+
+ALTER USER 'root'@'localhost' identified with mysql_native_password BY 'milton1234';
+flush  privileges;
 
 CREATE TABLE Imagenes (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -26,13 +32,10 @@ INSERT INTO Usuario (nombre_Usuario, contrasena, rol)  VALUES ('mil02','12345', 
 INSERT INTO Usuario (nombre_Usuario, contrasena, rol)  VALUES ('julio','123456', 'ventas');
 SELECT * FROM usuario;
 
-ALTER TABLE producto
-ADD imagen longtext; 
-
 CREATE TABLE producto (
   idproducto int auto_increment primary key,
   nombre varchar(30),
-  cantidad int,
+  existencia int,
   precio decimal,
   descripcion varchar(30),
   porcentaje_alcohol decimal,
@@ -49,6 +52,8 @@ CREATE TABLE empleado (
   correo varchar(25)
 );
 
+select * from categoria;
+
 CREATE TABLE cliente (
   DNI int auto_increment primary key,
   nombre varchar(80),
@@ -60,13 +65,17 @@ CREATE TABLE cliente (
 
 CREATE TABLE categoria (
   idcategoria int auto_increment primary key,
-  nombre varchar(255)
+  nombre_categoria varchar(255)
 );
 
+ALTER TABLE categoria
+CHANGE COLUMN nombre nombre_categoria varchar(255);
+
+select * from detalleventa;
 CREATE TABLE venta (
   idventa int auto_increment primary key,
   fecha date,
-  cantidad int,
+  tipo_de_venta varchar(255),
   DNI int,
   idempleado int,
   foreign key (idempleado) references empleado (idempleado),
@@ -83,18 +92,29 @@ CREATE TABLE detalleventa (
   foreign key (idventa) references venta (idventa)
 );
 
-
+select * from detalleventa;
+select * from venta;
+select * from producto;
+select * from cliente;
+select * from empleado;
 /*Inserciones*/
-INSERT INTO producto (nombre, existencia, precio, descripcion, porcentaje_alcohol, imagen)
-VALUES ('estrellita', 2, 125, 'guaro fino', '35');
+INSERT INTO producto (nombre, existencia, precio, descripcion, porcentaje_alcohol, idcategoria, imagen)
+VALUES ('bamboo', 2, 125, 'galon', '35','1');
 
 select * from producto;
 
-INSERT INTO cliente (nombre, apellido, direccion, correo, telefono)
-VALUES ('joya', 2, 125, 'guaro fino', '35');
+	DELETE FROM detalleventa;
+INSERT INTO venta(fecha, tipo_de_venta,DNI,idempleado)
+VALUES ('2024-05-29', 'presencial',1 ,1);
 
-INSERT INTO categoria (nombre)
-VALUES ('flor de caña');
+INSERT INTO detalleventa(cantidad, precio, idproducto,idventa)
+VALUES (31, 600, 4,1);
+
+INSERT INTO cliente (nombre, apellido, direccion, correo, telefono)
+VALUES ('juan', 'roman', 'norte', 'juanroman@gmail.com', '83876752');
+
+INSERT INTO categoria (nombre_categoria)
+VALUES ('vodka');
 
 select * from categoria;
 
@@ -103,12 +123,14 @@ VALUES ('juani', 'baez', '87654321', 'avenida1', 'juanbaez@gmail.com');
 
 
 INSERT INTO venta(fecha, tipo_de_venta)
-VALUES ('2024-05-20', 'presencial');
+VALUES ('2024-05-29', 'linea');
 
 INSERT INTO detalleventa(cantidad, precio)
-VALUES (40, 500);
+VALUES (30, 600);
 
-select * from producto;
+select * from detalleventa;
+
+
 
 /*Actualizaciones*/
 update venta 
@@ -139,10 +161,14 @@ set nombre = 'lennox',
     where idempleado = 1;
     
     update categoria
-    set nombre = 'blue label'
+    set nombre_categoria = 'blue label'
     where idcategoria = 1;
     
     select * from categoria;
+    
+    DELETE FROM categoria WHERE idcategoria = 1;
+    
+    select * from empleado;
     
 update cliente 
 set nombre = 'narutp',
@@ -154,18 +180,13 @@ set nombre = 'narutp',
     
     /*procedimiento eliminar*/
     
-    delete from categoria
-    where idcategoria = 3;
+  
     
     select * from categoria;
     
-    delete from cliente
-    where DNI = 1;
-    
-    delete from producto
-    where idproducto = 1;
-    
-    
+ DELETE FROM producto WHERE idproducto = 1;
+
+
 
 select *
 from producto;
