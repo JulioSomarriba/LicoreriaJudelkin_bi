@@ -45,7 +45,7 @@ function Empleado({rol}) {
          setDireccion('');
          setCorreo('');
        } else {
-         alert('Asegurese de ingresar todos los datos del empleado');
+         alert('Error al registrar el empleado');
        }
      } catch (error) {
        console.error('Error en la solicitud:', error);

@@ -24,6 +24,7 @@ function Estadisticas({ rol }) {  // Declaración del componente Estadisticas co
 
   const [productos, setProductos] = useState([]);  // Declaración del estado 'productos' y su función 'setProductos' a través de useState, con un valor inicial de un array vacío
   const [myChart, setMyChart] = useState(null);  // Declaración del estado 'myChart' y su función 'setMyChart' a través de useState, con un valor inicial de 'null'
+<<<<<<< HEAD
   const [categoryChart, setCategoryChart] = useState(null);
   const [productosPorCategoria, setProductosPorCategoria] = useState([]);
  
@@ -93,6 +94,8 @@ function Estadisticas({ rol }) {  // Declaración del componente Estadisticas co
     }, [productosPorCategoria]);
 
    
+=======
+>>>>>>> c1b022e92afa955ec11c4dfa27c5e8a201f2a745
 
   useEffect(() => {
     fetch('http://localhost:5000/crud/readproducto')  // Realiza una solicitud GET al servidor para obtener productos
@@ -161,8 +164,6 @@ function Estadisticas({ rol }) {  // Declaración del componente Estadisticas co
       .catch((error) => console.error('Error al obtener los productos:', error));  // Manejo de errores en caso de fallar la solicitud
   };
 
-  
-
         // Definición de la función generarReporteAlmacenImg como una función asíncrona
       const generarReporteAlmacenImg = async () => {
         try {
@@ -184,6 +185,7 @@ function Estadisticas({ rol }) {  // Declaración del componente Estadisticas co
         }
       };
 
+<<<<<<< HEAD
         
       
       const imprimirEstadisticas = () => {
@@ -191,6 +193,8 @@ function Estadisticas({ rol }) {  // Declaración del componente Estadisticas co
       }
       
 
+=======
+>>>>>>> c1b022e92afa955ec11c4dfa27c5e8a201f2a745
       return(
         <div>
           <Header rol={ rol } />  
@@ -249,23 +253,9 @@ function Estadisticas({ rol }) {  // Declaración del componente Estadisticas co
     
                 </Card>
               </Col>
-
-              <Col sm="6" md="6" lg="6">
-        <Card>
-          <Card.Body>
-            <Card.Title>Productos por Categoria</Card.Title>
-            <canvas id="myCategories" height="120"></canvas>         
-          </Card.Body>
-
-          <Card.Body>
-            <Button onClick={generarReporteAlmacenImg}>
-              Generar PDF
-            </Button>
-          </Card.Body>
-        </Card>
-  </Col>
-          
-        
+    
+             
+    
             </Row>
           </Container>
     

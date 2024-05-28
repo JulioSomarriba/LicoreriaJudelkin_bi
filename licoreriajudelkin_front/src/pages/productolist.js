@@ -17,7 +17,7 @@ function Productolist({ rol }) {
     imagen: ''
   });
 
-  const [categorias, setcategorias] = useState([]);
+  const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
     // Realiza una solicitud a tu ruta para obtener las categorías
@@ -26,7 +26,7 @@ function Productolist({ rol }) {
       .then(data => {
         // Actualiza el estado con las categorías obtenidas
         console.log('Categorías obtenidas:', data);
-        setcategorias(data);
+        setCategorias(data);
       })
       .catch(error => {
         console.error('Error al obtener las categorías:', error);
@@ -69,13 +69,13 @@ function Productolist({ rol }) {
 
     // Verifica si la cadena de búsqueda se encuentra en algún campo
     return (
-      idproducto == (search) ||
+      idproducto === (search) ||
       nombre.includes(search) ||
-      existencia == (search) ||
-      precio == (search) ||
+      existencia === (search) ||
+      precio === (search) ||
       descripcion.includes(search) ||
-      porcentaje_alcohol == (search) ||
-      idcategoria == (search)
+      porcentaje_alcohol === (search) ||
+      idcategoria === (search)
     );
   });
 
@@ -299,7 +299,7 @@ function Productolist({ rol }) {
                         <option>Seleccione la categoría</option>
                         {Array.isArray(categorias) && categorias.map((categoria) => (
                           <option key={categoria.idcategoria} value={categoria.idcategoria}>
-                            {categoria.nombre}
+                            {categoria.nombre_categoria}
                           </option>
                         ))}
                       </Form.Select>

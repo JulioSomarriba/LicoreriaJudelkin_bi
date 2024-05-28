@@ -7,7 +7,7 @@ import '../styles/App.css';
 function Venta({rol}) {
 
   const [formData, setFormData] = useState({
-    idcliente: '',
+    DNI: '',
     idempleado: '',
   });
 
@@ -18,7 +18,7 @@ function Venta({rol}) {
   const [cantidad, setCantidad] = useState('');
 
   const [empleado, setEmpleado] = useState([]);
-  const [cliente, setCliente] = useState([]);
+  const [Cliente, setCliente] = useState([]);
   const [producto, setProducto] = useState([]);
 
   const [detalleventa, setdetalleventa] = useState([]);
@@ -59,21 +59,21 @@ function Venta({rol}) {
     setdetalleventa(detallesActualizados);
   };
   
-  const filteredCliente = cliente.filter((cliente) => {
+  const filteredCliente = Cliente.filter((Cliente) => {
     // Convierte los valores de los campos a minúsculas para realizar una búsqueda insensible a mayúsculas y minúsculas
-    const idcliente = cliente.idcliente;
-    const nombre = cliente.nombre.toLowerCase(); 
+    const DNI = Cliente.DNI;
+    const nombre = Cliente.nombre.toLowerCase(); 
     const search = searchQuery.toLowerCase();
 
     // Verifica si la cadena de búsqueda se encuentra en algún campo
     return (
-      idcliente === (search) ||
+      DNI === (search) ||
       nombre.includes(search)
     );
   });
 
    //Manejo de carga y selección de Clientes --------------------------------------
-   const loadCliente = () => {
+   const loadDNI = () => {
     fetch('http://localhost:5000/crud/readcliente')
       .then((response) => response.json())
       .then((data) => setCliente(data))
@@ -92,11 +92,11 @@ function Venta({rol}) {
   };
 
   //Actualización de valor de variable de estado de Cliente selecionado
-  const selectCliente = (cliente) => {
-    setSelectedCliente(cliente);
+  const selectCliente = (Cliente) => {
+    setSelectedCliente(Cliente);
     setFormData({
       formData,
-      idcliente: cliente.idcliente,
+      DNI: Cliente.DNI,
     });
     closeClienteModal();
   };
@@ -159,7 +159,7 @@ function Venta({rol}) {
 
   //Carga de datos de Clientes, Empleados y Productos
   useEffect(() => {
-    loadCliente ();
+    loadDNI();
     loadEmpleado();
     loadProducto();
   }, []);
@@ -170,7 +170,7 @@ function Venta({rol}) {
       const data = {
         fecha: fecha,
         tipo_de_venta: tipo_de_venta,
-        idcliente: selectedCliente.idcliente,
+        DNI: selectedCliente.DNI,
         idempleado: selectedEmpleado.idempleado,
         detalle: detalleventa,
       };
