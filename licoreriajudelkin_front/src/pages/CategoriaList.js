@@ -8,13 +8,13 @@ function CategoriaList({ rol }) {
   const [showModal, setShowModal] = useState(false);
   const [selectedCategoria, setSelectedCategoria] = useState({});
   const [formData, setFormData] = useState({
-    nombre: '',
+    nombre_categoria: '',
   });
 
   const openModal = (categoria) => {
     setSelectedCategoria(categoria);
     setFormData({
-      nombre: categoria.nombre,
+      nombre_categoria: categoria.nombre_categoria,
     });
     setShowModal(true);
   };
@@ -89,14 +89,14 @@ function CategoriaList({ rol }) {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Nombres</th>
+                <th>nombre_categoria</th>
               </tr>
             </thead>
             <tbody>
               {categorias.map((categoria) => (
                 <tr key={categoria.idcategoria}>
                   <td>{categoria.idcategoria}</td>
-                  <td>{categoria.nombre}</td>
+                  <td>{categoria.nombre_categoria}</td>
                   <td>
                     <Button variant="primary" className="margin-button" onClick={() => openModal(categoria)}>
                       <FaPencil />
@@ -123,12 +123,12 @@ function CategoriaList({ rol }) {
               <Form className="mt-3">
                 <Row className="g-3">
                   <Col sm="6" md="6" lg="6">
-                    <FloatingLabel controlId="nombre" label="Nombre">
+                    <FloatingLabel controlId="nombre_categoria" label="Nombre">
                       <Form.Control
                         type="text"
                         placeholder="Ingrese el nombre de la categoría"
-                        value={formData.nombre}
-                        name="nombre"
+                        value={formData.nombre_categoria}
+                        name="nombre_categoria"
                         onChange={handleFormChange}
                       />
                     </FloatingLabel>

@@ -170,7 +170,7 @@ function Producto({ rol }) {
                       {Array.isArray(categorias) &&
                         categorias.map((categoria) => (
                           <option key={categoria.idcategoria} value={categoria.idcategoria}>
-                            {categoria.nombre}
+                            {categoria.nombre_categoria}
                           </option>
                         ))}
                     </Form.Select>

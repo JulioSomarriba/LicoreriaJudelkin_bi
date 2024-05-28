@@ -45,7 +45,7 @@ function Estadisticas({ rol }) {  // Declaración del componente Estadisticas co
         }
   
         
-      const labels = productosPorCategoria.map((categoria) => categoria.nombre);  
+      const labels = productosPorCategoria.map((categoria) => categoria.nombre_categoria);  
       const data = productosPorCategoria.map((categoria) => categoria.cantidad); 
   
         const categoria = new Chart(ctx,{
@@ -186,13 +186,39 @@ function Estadisticas({ rol }) {  // Declaración del componente Estadisticas co
 
         
       
-
+      const imprimirEstadisticas = () => {
+        console.log("Imprimiendo estadísticas...");
+      }
       
 
       return(
         <div>
           <Header rol={ rol } />  
     
+          
+          <Container className="margen-conten" responsive>
+
+        <Row className="g-3">
+          
+          <Col sm="12" md="12" lg="12">
+            <Card>
+              <Card.Body>
+                <Card.Title>Estado del almacen</Card.Title>
+
+                <iframe title="REPORTE KARDEX" width="1024" height="804" src="https://app.powerbi.com/view?r=eyJrIjoiMGI3ZWIxNGItYjZlMy00OGI0LWJjOWEtOTNlMjg5ODA3YTAwIiwidCI6ImU0NzY0NmZlLWRhMjctNDUxOC04NDM2LTVmOGIxNThiYTEyNyIsImMiOjR9&pageName=ReportSectiona1c3a4900345072cad39" frameborder="0" allowFullScreen="true"></iframe>
+
+                <Button onClick={imprimirEstadisticas}>
+                  Generar reporte con imagen
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
+
+        </Row>
+      </Container>
+          
+          
+          
           <Container className="margen-contenedor">
     
             <Row className="g-3">
