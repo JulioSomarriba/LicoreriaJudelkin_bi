@@ -6,14 +6,14 @@ import '../styles/App.css';  // Importa estilos CSS del archivo App.css
 
 function Galeria({ rol }) {  // Define un componente funcional Galeria que recibe props
 
-  const [productos, setProductos] = useState([]);  // Crea un estado para almacenar la lista de productos
+  const [producto, setProductos] = useState([]);  // Crea un estado para almacenar la lista de productos
   const [searchQuery, setSearchQuery] = useState('');  // Crea un estado para almacenar la cadena de búsqueda
 
   const handleSearchChange = (e) => {  // Función para manejar cambios en la búsqueda
     setSearchQuery(e.target.value);  // Actualiza el estado con la cadena de búsqueda ingresada
   };
 
-  const filteredProductos = productos.filter((producto) => {  // Filtra los productos según la cadena de búsqueda
+  const filteredProductos = producto.filter((producto) => {  // Filtra los productos según la cadena de búsqueda
     // Convierte a minúsculas los valores de los campos para realizar una búsqueda insensible a mayúsculas y minúsculas
     const idproducto = producto.idproducto;
     const nombre = producto.nombre.toLowerCase(); 
@@ -27,13 +27,13 @@ function Galeria({ rol }) {  // Define un componente funcional Galeria que recib
     // Verifica si la cadena de búsqueda se encuentra en algún campo de los productos
     // Devuelve un nuevo array con los productos filtrados
     return (
-      idproducto == (search) ||
+      idproducto === (search) ||
       nombre.includes(search) ||
-      cantidad == (search) ||
-      precio == (search) ||
+      cantidad === (search) ||
+      precio === (search) ||
       descripcion.includes(search) ||
-      porcentaje_alcohol == (search) ||
-      idcategoria == (search)
+      porcentaje_alcohol === (search) ||
+      idcategoria === (search)
     );
 
   });

@@ -26,26 +26,24 @@ function CLienteList({rol}) {
    const filteredClientes = Clientes.filter((cliente) => {
     // Convierte los valores de los campos a minúsculas para realizar una búsqueda insensible a mayúsculas y minúsculas
     const idclientes = cliente.idclientes;
-    const nombre = cliente.nombre.toLowerCase(); 
-    const apellido = cliente.apellido.toLowerCase();
-    const direccion = cliente.direccion.toLowerCase();
-    const correo = cliente.correo.toLowerCase();
-    const telefono = cliente.telefono.toLowerCase();
+    const nombre = cliente.nombre?.toLowerCase(); 
+    const apellido = cliente.apellido?.toLowerCase();
+    const direccion = cliente.direccion?.toLowerCase();
+    const correo = cliente.correo?.toLowerCase();
+    const telefono = cliente.telefono?.toLowerCase();
     const search = searchQuery.toLowerCase();
-
-    
+  
     // Verifica si la cadena de búsqueda se encuentra en algún campo
     return (
-      idclientes === (search) ||
-      nombre.includes(search) ||
-      apellido.includes (search) ||
-      direccion.includes (search) ||
-      correo.includes(search) ||
-      telefono === (search) 
-      
-      
+      idclientes === search ||
+      nombre?.includes(search) ||
+      apellido?.includes(search) ||
+      direccion?.includes(search) ||
+      correo?.includes(search) ||
+      telefono === search
     );
   });
+  
 
   
  

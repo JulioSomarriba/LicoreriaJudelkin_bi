@@ -15,7 +15,7 @@ function EmpleadoList({rol}) {
     correo: '',
   });
 
-  // Función para abrir el modal y pasar los datos del docente seleccionado
+  // Función para abrir el modal y pasar los datos del empleado seleccionado
   const openModal = (empleado) => {
     setSelectedEmpleado(empleado);
 
@@ -112,17 +112,17 @@ function EmpleadoList({rol}) {
               </tr>
             </thead>
             <tbody>
-              {Empleados.map((empleado) => (
-                <tr key={empleado.idempleado}>
-                  <td>{empleado.idempleado}</td>
-                  <td>{empleado.nombre}</td>
-                  <td>{empleado.apellido}</td>
-                  <td>{empleado.telefono}</td>
-                  <td>{empleado.direccion}</td>
-                  <td>{empleado.correo}</td>
+              {Empleados.map((Empleado) => (
+                <tr key={Empleado.idempleado}>
+                  <td>{Empleado.idempleado}</td>
+                  <td>{Empleado.nombre}</td>
+                  <td>{Empleado.apellido}</td>
+                  <td>{Empleado.telefono}</td>
+                  <td>{Empleado.direccion}</td>
+                  <td>{Empleado.correo}</td>
                   <td>
-                    <Button variant="primary" className='margin-button' onClick={() => openModal(empleado)}><FaPencil /></Button>
-                    <Button variant="danger" className='margin-button' onClick={() => handleDelete(empleado.idempleado)}><FaTrashCan /></Button>
+                    <Button variant="primary" className='margin-button' onClick={() => openModal(Empleado)}><FaPencil /></Button>
+                    <Button variant="danger" className='margin-button' onClick={() => handleDelete(Empleado.idempleado)}><FaTrashCan /></Button>
                   </td>
                 </tr>
               ))}

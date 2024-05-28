@@ -39,7 +39,7 @@ function Producto({ rol }) {
       descripcion,
       porcentaje_alcohol,
       idcategoria,
-      imagen,
+      imagen
     };
 
     try {
@@ -62,6 +62,7 @@ function Producto({ rol }) {
         setDescripcion('');
         setPorcentaje_alcohol('');
         setidcategoria('');
+        setImagen('');
       } else {
         alert('Asegurese de ingresar todos los datos del producto');
       }
@@ -170,7 +171,7 @@ function Producto({ rol }) {
                       {Array.isArray(categorias) &&
                         categorias.map((categoria) => (
                           <option key={categoria.idcategoria} value={categoria.idcategoria}>
-                            {categoria.nombre}
+                            {categoria.nombre_categoria}
                           </option>
                         ))}
                     </Form.Select>

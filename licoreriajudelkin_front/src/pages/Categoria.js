@@ -6,7 +6,7 @@ import '../styles/App.css';
 function Categoria({rol}) {
 
   // Crear un estado para cada campo del formulario
-  const [nombre, setnombre] = useState('');
+  const [nombre_categoria, setnombre_categoria] = useState('');
 
   // Función para manejar el envío del formulario
   const handleSubmit = async (e) => {
@@ -14,7 +14,7 @@ function Categoria({rol}) {
 
     // Crear un objeto con los datos del formulario
     const formData = {
-      nombre,
+      nombre_categoria,
     };
 
     try {
@@ -31,7 +31,7 @@ function Categoria({rol}) {
         // El registro se creó exitosamente
         alert('Registro exitoso');
         // Reiniciar los campos del formulario
-        setnombre('');
+        setnombre_categoria('');
       } else {
         alert('Asegurese de ingresar la categoria');
       }
@@ -44,7 +44,7 @@ function Categoria({rol}) {
   const handleNombreCategoriaChange = (e) => {
     // Validar que solo se ingresen letras
     const nuevoNombre = e.target.value.replace(/[^a-zA-Z ]/g, ''); // Solo permite letras y espacios
-    setnombre(nuevoNombre);
+    setnombre_categoria(nuevoNombre);
   };
 
   return(
@@ -63,7 +63,7 @@ function Categoria({rol}) {
                     <Form.Control
                       type="text"
                       placeholder="Ingrese el nombre dela marca"
-                      value={nombre}
+                      value={nombre_categoria}
                       onChange={handleNombreCategoriaChange}
                     />
                   </FloatingLabel>
