@@ -9,10 +9,6 @@ import Footer from '../components/Footer';
 
 function Dashboard({ rol }) {
 
-const imprimirEstadisticas = () => {
-    console.log("Imprimiendo estadísticas...");
-  }
-
   return (
     <div>
       <Header rol={rol} />
