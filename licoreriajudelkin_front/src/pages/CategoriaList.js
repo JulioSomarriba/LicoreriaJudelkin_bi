@@ -11,27 +11,6 @@ function CategoriaList({ rol }) {
     nombre_categoria: '',
   });
 
-  // Crear busqueda
-
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
-  const filteredcategoria = categorias.filter((categorias) => {
-   // Convierte los valores de los campos a minúsculas para realizar una búsqueda insensible a mayúsculas y minúsculas
-   const idcategoria = categorias.idcategoria;
-   const nombre_categoria = categorias.nombre_categoria?.toLowerCase(); 
-   const search = searchQuery.toLowerCase();
- 
-   // Verifica si la cadena de búsqueda se encuentra en algún campo
-   return (
-     idcategoria === search ||
-     nombre_categoria?.includes(search) 
-   );
- });
-
   const openModal = (categoria) => {
     setSelectedCategoria(categoria);
     setFormData({
@@ -98,33 +77,23 @@ function CategoriaList({ rol }) {
   }, []);
 
   return (
-      <div>
-        <Header rol={rol}/>
-        <Container>
-        <Card className="margen-contenedor">
-          <Card.Body>
-            <Card.Title className="mb-3">Listado de categoria</Card.Title>
-            <Row className="mb-3">
-              <Col sm="6" md="6" lg="4">
-                <FloatingLabel controlId="search" label="Buscar">
-                  <Form.Control
-                    type="text"
-                    placeholder="Buscar"
-                    value={searchQuery}
-                    onChange={handleSearchChange}
-                  />
-                </FloatingLabel>
-              </Col>
-            </Row>
-            <Table striped bordered hover>
+    <div>
+      <Header rol={rol} />
+
+      <Container>
+
+      <Card className="margen-contenedor">
+        <Card.Body>
+          <Card.Title className="mb-3">Lista de categorías</Card.Title>
+          <Table striped bordered hover>
             <thead>
               <tr>
                 <th>ID</th>
-                <th>nombre_categoria</th>
+                <th>Nombres</th>
               </tr>
             </thead>
             <tbody>
-              {filteredcategoria.map((categoria) => (
+              {categorias.map((categoria) => (
                 <tr key={categoria.idcategoria}>
                   <td>{categoria.idcategoria}</td>
                   <td>{categoria.nombre_categoria}</td>
@@ -154,7 +123,7 @@ function CategoriaList({ rol }) {
               <Form className="mt-3">
                 <Row className="g-3">
                   <Col sm="6" md="6" lg="6">
-                    <FloatingLabel controlId="nombre_categoria" label="Nombre">
+                    <FloatingLabel controlId="nombre" label="Nombre">
                       <Form.Control
                         type="text"
                         placeholder="Ingrese el nombre de la categoría"

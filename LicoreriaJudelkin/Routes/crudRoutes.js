@@ -1,10 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-
-
-
-
 //Ruta para consultar clientes
 module.exports = (db) => {
 
@@ -643,21 +639,21 @@ module.exports = (db) => {
     const id = req.params.id;
 
     // Recibe los datos actualizados desde el cuerpo de la solicitud (req.body)
-    const {nombre} = req.body;
+    const {nombre_categoria} = req.body;
 
     // Verifica si se proporcionaron los datos necesarios
-    if (!nombre) {
+    if (!nombre_categoria) {
       return res.status(400).json({ error: 'Todos los campos son obligatorios' });
     }
 
     // Realiza la consulta SQL para actualizar el registro por ID
     const sql = `
       UPDATE categoria
-      SET nombre = ?
+      SET nombre_categoria = ?
       WHERE idcategoria = ?
     `;
 
-    const values = [nombre,id];
+    const values = [nombre_categoria,id];
 
     // Ejecuta la consulta
     db.query(sql, values, (err, result) => {
@@ -700,7 +696,7 @@ module.exports = (db) => {
 
   router.get('/readcategoria', (req, res) => {
     const storedProcedure = 'seleccionarcategoria';
-    db.query(`CALL ${storedProcedure}('nombre')`, (err, result) => {
+    db.query(`CALL ${storedProcedure}('nombre_categoria')`, (err, result) => {
       if (err) {
         console.error(`Error al ejecutar el procedimiento almacenado ${storedProcedure}:`, err);
         res.status(500).json({ error: `Error al ejecutar el procedimiento almacenado ${storedProcedure}`, details: err });
@@ -715,10 +711,10 @@ module.exports = (db) => {
 
 router.post('/createcategoria', (req, res) => {
   // Recibe los datos del nuevo registro desde el cuerpo de la solicitud (req.body)
-  const { nombre } = req.body;
+  const { nombre_categoria } = req.body;
 
   // Verifica si se proporcionaron los datos necesarios
-  if (!nombre) {
+  if (!nombre_categoria) {
     return res.status(400).json({ error: 'Todos los campos son obligatorios' });
   }
 
@@ -728,7 +724,7 @@ router.post('/createcategoria', (req, res) => {
   // Llama al procedimiento almacenado
   db.query(
     `CALL ${storedProcedure}(?)`,
-    [nombre],
+    [nombre_categoria],
     (err, result) => {
       if (err) {
         console.error(`Error al ejecutar el procedimiento almacenado ${storedProcedure}:`, err);
@@ -741,18 +737,18 @@ router.post('/createcategoria', (req, res) => {
   );
 });
 
+
 router.get('/productosPorCategoria', (req, res) => { 
   const sql = `
       SELECT
-      categoria.nombre,
+      categoria.nombre_categoria,
       COUNT(producto.idproducto) AS cantidad
   FROM
       producto
   INNER JOIN
       categoria ON producto.idcategoria = categoria.idcategoria
   GROUP BY
-      categoria.idcategoria
-`;
+      categoria.idcategoria`;
 db.query(sql, (err, result) => {   
   if (err) {
       console.error('Error al obtener la cantidad de productos por categoría:', err);
@@ -762,10 +758,8 @@ db.query(sql, (err, result) => {
     }
   });
 });
-  
 
-
-  return router;
+return router;
 
 }; 
 

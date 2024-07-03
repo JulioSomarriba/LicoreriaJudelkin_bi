@@ -78,6 +78,10 @@ function Header({ rol }) {
                     <Link to="/estadisticas" className="link-unstyled">Estadisticas</Link>
                   </Nav.Link>
 
+                  <Nav.Link>
+                    <Link to="/dashboard" className="link-unstyled">Dashboard</Link>
+                  </Nav.Link>
+
                   
 
               <NavDropdown title="Ventas" id="Venta">

@@ -17,7 +17,7 @@ function Productolist({ rol }) {
     imagen: ''
   });
 
-  const [categorias, setCategorias] = useState([]);
+  const [categorias, setcategorias] = useState([]);
 
   useEffect(() => {
     // Realiza una solicitud a tu ruta para obtener las categorías
@@ -26,7 +26,7 @@ function Productolist({ rol }) {
       .then(data => {
         // Actualiza el estado con las categorías obtenidas
         console.log('Categorías obtenidas:', data);
-        setCategorias(data);
+        setcategorias(data);
       })
       .catch(error => {
         console.error('Error al obtener las categorías:', error);
@@ -69,13 +69,13 @@ function Productolist({ rol }) {
 
     // Verifica si la cadena de búsqueda se encuentra en algún campo
     return (
-      idproducto === (search) ||
+      idproducto == (search) ||
       nombre.includes(search) ||
-      existencia === (search) ||
-      precio === (search) ||
+      existencia == (search) ||
+      precio == (search) ||
       descripcion.includes(search) ||
-      porcentaje_alcohol === (search) ||
-      idcategoria === (search)
+      porcentaje_alcohol == (search) ||
+      idcategoria == (search)
     );
   });
 

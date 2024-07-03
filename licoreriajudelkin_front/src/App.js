@@ -16,6 +16,7 @@ import DetalleventaList from './pages/DetalleventaList';
 import Venta from './pages/Venta';
 import VentaList from './pages/VentaList';
 import Estadisticas from './pages/Estadisticas';
+import Dashboard from './pages/Dashboard';
 import Galeria from './pages/Galeria';  
 
 
@@ -52,6 +53,7 @@ function App() {
         <Route path="/Venta" element={userRol ? <Venta rol={userRol} /> : <Navigate to="/sinacceso" />} />
         <Route path= "/VentaList" element={userRol ? <VentaList rol={userRol} /> : <Navigate to="/sinacceso" />} />
         <Route path="/estadisticas" element={userRol ? <Estadisticas rol={userRol} /> : <Navigate to="/sinacceso" />} />
+        <Route path="/dashboard" element={userRol ? <Dashboard rol={userRol} /> : <Navigate to="/sinacceso" />} />
         <Route path="/galeria" element={userRol ? <Galeria rol={userRol} /> : <Navigate to="/sinacceso" />} />
         <Route path="/SinAcceso" element={<sinAcceso />} />
       </Routes>
